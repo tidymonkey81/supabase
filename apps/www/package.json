@@ -99,7 +99,6 @@
     "@types/three": "^0.136.0",
     "api-types": "*",
     "autoprefixer": "^10.4.14",
-    "config": "*",
     "postcss": "^8.4.31",
     "tsconfig": "*"
   },
