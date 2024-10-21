@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@supabase/sql-to-rest>libpg-query': 15.2.0-rc.deparse.3
+
 importers:
 
   .:
@@ -1253,8 +1256,8 @@ importers:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.7.5)
       libpg-query:
-        specifier: ^15.2.0
-        version: 15.2.0(encoding@0.1.13)
+        specifier: 15.2.0-rc.deparse.3
+        version: 15.2.0-rc.deparse.3(encoding@0.1.13)
       mdast-util-from-markdown:
         specifier: ^2.0.0
         version: 2.0.0
@@ -3591,6 +3594,10 @@ packages:
 
   '@kwsites/promise-deferred@1.1.1':
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
+
+  '@launchql/protobufjs@7.2.6':
+    resolution: {integrity: sha512-vwi1nG2/heVFsIMHQU1KxTjUp5c757CTtRAZn/jutApCkFlle1iv8tzM/DHlSZJKDldxaYqnNYTg0pTyp8Bbtg==}
+    engines: {node: '>=12.0.0'}
 
   '@lezer/common@1.1.0':
     resolution: {integrity: sha512-XPIN3cYDXsoJI/oDWoR2tD++juVrhgIago9xyKhZ7IhGlzdDM9QgC8D8saKNCz5pindGcznFr2HBSsEQSWnSjw==}
@@ -8190,6 +8197,7 @@ packages:
     resolution: {integrity: sha512-t0q23FIpvHDTtnORW+bDJziGsal5uh9RJTJ1fyH8drd4lICOoXhJ5pLMUZ5C0VQei6dNmwTzzoTRgMkO9JgHEQ==}
     peerDependencies:
       eslint: '>= 5'
+    bundledDependencies: []
 
   eslint-plugin-import@2.29.1:
     resolution: {integrity: sha512-BbPC0cuExzhiMo4Ff1BTVwHpjjv28C5R+btTOGaCRC7UEz801up0JadwkeSk5Ued6TG34uaczuVuH6qyy5YUxw==}
@@ -9692,8 +9700,8 @@ packages:
   libpg-query@13.3.1:
     resolution: {integrity: sha512-RLvnKPLWngNR7bNep/Q9euPcfFJVFfDg/iP13lYGxcSI01emS/1vbTw6EBd8UordweWFdvUuK+31sHp104dukA==}
 
-  libpg-query@15.2.0:
-    resolution: {integrity: sha512-fBi14tsU3/ahtfU0C+/tvmtlt0EJM6kXe0Dl4/cSbiNmJ3IwLIuk3lawwiK5ByXU4sXwyAzbkvSl26jVXzYuaA==}
+  libpg-query@15.2.0-rc.deparse.3:
+    resolution: {integrity: sha512-e8OPjGPqy3H+rSdwQigkeibSIE6WMU4yyYZErPNgHeyZHcRGOuNSuSx0ifJhgVl7JkapVHtSau2ZCl3g65RTRg==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -15860,6 +15868,21 @@ snapshots:
 
   '@kwsites/promise-deferred@1.1.1': {}
 
+  '@launchql/protobufjs@7.2.6':
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/base64': 1.1.2
+      '@protobufjs/codegen': 2.0.4
+      '@protobufjs/eventemitter': 1.1.0
+      '@protobufjs/fetch': 1.1.0
+      '@protobufjs/float': 1.0.2
+      '@protobufjs/inquire': 1.1.0
+      '@protobufjs/path': 1.1.2
+      '@protobufjs/pool': 1.1.0
+      '@protobufjs/utf8': 1.1.0
+      '@types/node': 20.12.11
+      long: 5.2.3
+
   '@lezer/common@1.1.0': {}
 
   '@lezer/highlight@1.1.6':
@@ -18944,7 +18967,7 @@ snapshots:
   '@supabase/sql-to-rest@0.1.6(encoding@0.1.13)':
     dependencies:
       '@babel/parser': 7.24.7
-      libpg-query: 15.2.0(encoding@0.1.13)
+      libpg-query: 15.2.0-rc.deparse.3(encoding@0.1.13)
       prettier: 3.2.5
     transitivePeerDependencies:
       - encoding
@@ -23506,7 +23529,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.7.5
+      '@types/node': 20.12.11
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -23748,9 +23771,10 @@ snapshots:
       - encoding
       - supports-color
 
-  libpg-query@15.2.0(encoding@0.1.13):
+  libpg-query@15.2.0-rc.deparse.3(encoding@0.1.13):
     dependencies:
       '@emnapi/runtime': 0.43.1
+      '@launchql/protobufjs': 7.2.6
       '@mapbox/node-pre-gyp': 1.0.11(encoding@0.1.13)
       '@pgsql/types': 15.0.2
       node-addon-api: 7.1.0

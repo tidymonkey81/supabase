@@ -53,6 +53,9 @@
     "pnpm": "^9.0.0",
     "node": "^20.0.0"
   },
+  "resolutions": {
+    "@supabase/sql-to-rest>libpg-query": "15.2.0-rc.deparse.3"
+  },
   "keywords": ["postgres", "firebase", "storage", "functions", "database", "auth"],
   "packageManager": "pnpm@9.10.0"
 }
