@@ -1888,6 +1888,7 @@ export const platform: NavMenuConstant = {
         { name: 'Database Backups', url: '/guides/platform/backups' },
         { name: 'IPv4 Address', url: '/guides/platform/ipv4-address' },
         { name: 'Read Replicas', url: '/guides/platform/read-replicas' },
+        { name: 'OrioleDB storage engine', url: '/guides/platform/orioledb' },
       ],
     },
     {
