@@ -967,6 +967,10 @@ export interface paths {
     /** Gets project's settings */
     get: operations['SettingsController_getProjectApi']
   }
+  '/platform/projects/{ref}/settings/sensitivity': {
+    /** Update project's sensitivity settings */
+    patch: operations['SettingsController_patchProjectSensitivity']
+  }
   '/platform/projects/{ref}/status': {
     /** Gets project's status */
     get: operations['ProjectStatusController_getStatus']
@@ -4974,8 +4978,10 @@ export interface components {
       service_api_keys?: components['schemas']['ProjectServiceApiKeyResponse'][]
       ssl_enforced: boolean
       is_sensitive?: boolean
-      has_compliance_addon?: boolean
       status: string
+    }
+    ProjectSensitivitySettingResponse: {
+      is_sensitive: boolean
     }
     /** @enum {string} */
     ProjectStatus:
@@ -6332,6 +6338,9 @@ export interface components {
     }
     UpdateProjectBody: {
       name: string
+    }
+    UpdateProjectSensitivityBody: {
+      is_sensitive: boolean
     }
     UpdateProviderBody: {
       attribute_mapping?: components['schemas']['AttributeMapping']
@@ -13243,6 +13252,35 @@ export interface operations {
         }
       }
       /** @description Failed to retrieve project's settings */
+      500: {
+        content: never
+      }
+    }
+  }
+  /** Update project's sensitivity settings */
+  SettingsController_patchProjectSensitivity: {
+    parameters: {
+      path: {
+        /** @description Project ref */
+        ref: string
+      } 
+    }
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateProjectSensitivityBody']
+      }
+    }
+    responses: {
+      200: {
+        content: {
+          'application/json': components['schemas']['ProjectSensitivitySettingResponse']
+        }
+      }
+      /** @description Failed to update project's sensitivity setting */
+      404: {
+        content: never
+      }
+      /** @description Failed to update project's sensitivity setting */
       500: {
         content: never
       }
