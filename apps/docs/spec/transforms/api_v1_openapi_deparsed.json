@@ -1184,6 +1184,11 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "type": {
+                        "nullable": true,
+                        "type": "string",
+                        "enum": ["publishable", "secret", "legacy"]
+                      },
                       "name": {
                         "type": "string"
                       },
@@ -1193,10 +1198,6 @@
                       "id": {
                         "type": "string",
                         "nullable": true
-                      },
-                      "type": {
-                        "nullable": true,
-                        "type": "object"
                       },
                       "prefix": {
                         "type": "string",
@@ -1306,6 +1307,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "type": {
+                      "nullable": true,
+                      "type": "string",
+                      "enum": ["publishable", "secret", "legacy"]
+                    },
                     "name": {
                       "type": "string"
                     },
@@ -1315,10 +1321,6 @@
                     "id": {
                       "type": "string",
                       "nullable": true
-                    },
-                    "type": {
-                      "nullable": true,
-                      "type": "object"
                     },
                     "prefix": {
                       "type": "string",
@@ -1432,6 +1434,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "type": {
+                      "nullable": true,
+                      "type": "string",
+                      "enum": ["publishable", "secret", "legacy"]
+                    },
                     "name": {
                       "type": "string"
                     },
@@ -1441,10 +1448,6 @@
                     "id": {
                       "type": "string",
                       "nullable": true
-                    },
-                    "type": {
-                      "nullable": true,
-                      "type": "object"
                     },
                     "prefix": {
                       "type": "string",
@@ -1526,6 +1529,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "type": {
+                      "nullable": true,
+                      "type": "string",
+                      "enum": ["publishable", "secret", "legacy"]
+                    },
                     "name": {
                       "type": "string"
                     },
@@ -1535,10 +1543,6 @@
                     "id": {
                       "type": "string",
                       "nullable": true
-                    },
-                    "type": {
-                      "nullable": true,
-                      "type": "object"
                     },
                     "prefix": {
                       "type": "string",
@@ -8045,6 +8049,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "resource_multiplier",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8066,6 +8078,9 @@
                   },
                   "verify_jwt": {
                     "type": "boolean"
+                  },
+                  "resource_multiplier": {
+                    "type": "string"
                   }
                 },
                 "required": ["slug", "name", "body"]
@@ -8087,6 +8102,9 @@
                   },
                   "verify_jwt": {
                     "type": "boolean"
+                  },
+                  "resource_multiplier": {
+                    "type": "string"
                   }
                 },
                 "required": ["slug", "name", "body"]
@@ -8136,6 +8154,9 @@
                       "type": "string"
                     },
                     "import_map_path": {
+                      "type": "string"
+                    },
+                    "resource_multiplier": {
                       "type": "string"
                     }
                   },
@@ -8227,6 +8248,9 @@
                         "type": "string"
                       },
                       "import_map_path": {
+                        "type": "string"
+                      },
+                      "resource_multiplier": {
                         "type": "string"
                       }
                     },
@@ -8329,6 +8353,9 @@
                       "type": "string"
                     },
                     "import_map_path": {
+                      "type": "string"
+                    },
+                    "resource_multiplier": {
                       "type": "string"
                     }
                   },
@@ -8433,6 +8460,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "resource_multiplier",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8450,6 +8485,9 @@
                   },
                   "verify_jwt": {
                     "type": "boolean"
+                  },
+                  "resource_multiplier": {
+                    "type": "string"
                   }
                 }
               }
@@ -8466,6 +8504,9 @@
                   },
                   "verify_jwt": {
                     "type": "boolean"
+                  },
+                  "resource_multiplier": {
+                    "type": "string"
                   }
                 }
               }
@@ -8514,6 +8555,9 @@
                       "type": "string"
                     },
                     "import_map_path": {
+                      "type": "string"
+                    },
+                    "resource_multiplier": {
                       "type": "string"
                     }
                   },
@@ -10577,6 +10621,11 @@
       "ApiKeyResponse": {
         "type": "object",
         "properties": {
+          "type": {
+            "nullable": true,
+            "type": "string",
+            "enum": ["publishable", "secret", "legacy"]
+          },
           "name": {
             "type": "string"
           },
@@ -10586,10 +10635,6 @@
           "id": {
             "type": "string",
             "nullable": true
-          },
-          "type": {
-            "nullable": true,
-            "type": "object"
           },
           "prefix": {
             "type": "string",
@@ -13596,6 +13641,9 @@
           },
           "verify_jwt": {
             "type": "boolean"
+          },
+          "resource_multiplier": {
+            "type": "string"
           }
         },
         "required": ["slug", "name", "body"]
@@ -13637,6 +13685,9 @@
             "type": "string"
           },
           "import_map_path": {
+            "type": "string"
+          },
+          "resource_multiplier": {
             "type": "string"
           }
         },
@@ -13680,6 +13731,9 @@
           },
           "import_map_path": {
             "type": "string"
+          },
+          "resource_multiplier": {
+            "type": "string"
           }
         },
         "required": ["version", "created_at", "updated_at", "id", "slug", "name", "status"]
@@ -13695,6 +13749,9 @@
           },
           "verify_jwt": {
             "type": "boolean"
+          },
+          "resource_multiplier": {
+            "type": "string"
           }
         }
       },

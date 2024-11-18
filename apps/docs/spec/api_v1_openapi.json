@@ -2035,6 +2035,12 @@
             "required": false,
             "in": "query",
             "schema": { "type": "string" }
+          },
+          {
+            "name": "resource_multiplier",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2175,6 +2181,12 @@
           },
           {
             "name": "import_map_path",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "resource_multiplier",
             "required": false,
             "in": "query",
             "schema": { "type": "string" }
@@ -2945,10 +2957,14 @@
       "ApiKeyResponse": {
         "type": "object",
         "properties": {
+          "type": {
+            "nullable": true,
+            "type": "string",
+            "enum": ["publishable", "secret", "legacy"]
+          },
           "name": { "type": "string" },
           "api_key": { "type": "string" },
           "id": { "type": "string", "nullable": true },
-          "type": { "nullable": true, "type": "object" },
           "prefix": { "type": "string", "nullable": true },
           "description": { "type": "string", "nullable": true },
           "hash": { "type": "string", "nullable": true },
@@ -4134,7 +4150,8 @@
           "slug": { "type": "string", "pattern": "/^[A-Za-z0-9_-]+$/" },
           "name": { "type": "string" },
           "body": { "type": "string" },
-          "verify_jwt": { "type": "boolean" }
+          "verify_jwt": { "type": "boolean" },
+          "resource_multiplier": { "type": "string" }
         },
         "required": ["slug", "name", "body"]
       },
@@ -4151,7 +4168,8 @@
           "verify_jwt": { "type": "boolean" },
           "import_map": { "type": "boolean" },
           "entrypoint_path": { "type": "string" },
-          "import_map_path": { "type": "string" }
+          "import_map_path": { "type": "string" },
+          "resource_multiplier": { "type": "string" }
         },
         "required": ["version", "created_at", "updated_at", "id", "slug", "name", "status"]
       },
@@ -4168,7 +4186,8 @@
           "verify_jwt": { "type": "boolean" },
           "import_map": { "type": "boolean" },
           "entrypoint_path": { "type": "string" },
-          "import_map_path": { "type": "string" }
+          "import_map_path": { "type": "string" },
+          "resource_multiplier": { "type": "string" }
         },
         "required": ["version", "created_at", "updated_at", "id", "slug", "name", "status"]
       },
@@ -4177,7 +4196,8 @@
         "properties": {
           "name": { "type": "string" },
           "body": { "type": "string" },
-          "verify_jwt": { "type": "boolean" }
+          "verify_jwt": { "type": "boolean" },
+          "resource_multiplier": { "type": "string" }
         }
       },
       "V1StorageBucketResponse": {
