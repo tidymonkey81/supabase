@@ -2,7 +2,6 @@ import { Clock, Heart, Server, SquareStack } from 'lucide-react'
 
 import {
   IconBranching,
-  IconCron,
   IconGitHub,
   IconMenuApi,
   IconMenuAuth,

@@ -63,12 +63,12 @@ export const GLOBAL_MENU_ITEMS: GlobalMenuItems = [
             href: '/guides/cron',
             level: 'cron',
           },
-          {
-            label: 'Queues',
-            icon: 'queue',
-            href: '/guides/queues',
-            level: 'queue',
-          },
+          // {
+          //   label: 'Queues',
+          //   icon: 'queue',
+          //   href: '/guides/queues',
+          //   level: 'queue',
+          // },
         ],
       ],
     },
@@ -959,10 +959,6 @@ export const database: NavMenuConstant = {
           url: '/guides/database/extensions/pgrouting',
         },
         {
-          name: 'pg_cron: Job Scheduling',
-          url: '/guides/database/extensions/pg_cron',
-        },
-        {
           name: 'pg_graphql: GraphQL Support',
           url: '/guides/database/extensions/pg_graphql',
         },
@@ -1108,6 +1104,17 @@ export const database: NavMenuConstant = {
         },
       ],
     },
+  ],
+}
+
+export const cron: NavMenuConstant = {
+  icon: 'cron',
+  title: 'Cron Jobs',
+  url: '/guides/cron',
+  items: [
+    { name: 'Overview', url: '/guides/cron' },
+    { name: 'Create Cron Job', url: '/guides/cron/create-cron-job' },
+    { name: 'Edit or delete Cron Job', url: '/guides/cron/edit-delete-cron-job' },
   ],
 }
 

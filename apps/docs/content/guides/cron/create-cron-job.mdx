@@ -1,0 +1,49 @@
+---
+title: 'Create a Cron Job'
+---
+
+Create a Cron Job from the [Integrations section](/dashboard/project/_/integrations/cron-jobs) section of the Dashboard.
+
+## Create a cron job
+
+1. Go to the [Cron Jobs](/dashboard/project/_/integrations/cron-jobs) tab in the Integrations section.
+1. Click `Create a new cron job`.
+1. Name your cron job.
+1. Give your cron job a schedule.
+1. Pick a SQL snippet, function, or HTTP request to execute whenever the cron job runs.
+1. Click `Create cron job`.
+
+## Examples
+
+Here are some example use cases for Cron Jobs:
+
+### Delete old data
+
+Create a Cron Job with the following SQL snippet:
+
+```sql
+delete from events
+  where event_time < now() - interval '1 week';
+```
+
+### Run a vacuum
+
+Create a Cron Job with the following SQL snippet:
+
+```sql
+vacuum;
+```
+
+### Call a stored procedure
+
+To use a stored procedure, create a Cron Job with a SQL snippet to call it:
+
+```sql
+call my_procedure();
+```
+
+## Caution: Scheduling system maintenance
+
+Be extremely careful when setting up `pg_cron` jobs for system maintenance tasks as they can have unintended consequences. For instance, scheduling a command to terminate idle connections with `pg_terminate_backend(pid)` can disrupt critical background processes like nightly backups. Often, there is an existing Postgres setting e.g. `idle_session_timeout` that can perform these common maintenance tasks without the risk.
+
+Reach out to [Supabase Support](https://supabase.com/support) if you're unsure if that applies to your use case.
