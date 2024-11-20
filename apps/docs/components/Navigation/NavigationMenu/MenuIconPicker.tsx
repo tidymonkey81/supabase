@@ -1,7 +1,8 @@
-import { Heart, Server } from 'lucide-react'
+import { Clock, Heart, Server, SquareStack } from 'lucide-react'
 
 import {
   IconBranching,
+  IconCron,
   IconGitHub,
   IconMenuApi,
   IconMenuAuth,
@@ -93,6 +94,10 @@ function getMenuIcon(menuKey: string, width: number = 16, height: number = 16, c
       return <Heart width={width} height={height} className={className} />
     case 'deployment':
       return <Server width={width} height={height} className={className} />
+    case 'cron':
+      return <Clock width={width} height={height} className={className} />
+    case 'queue':
+      return <SquareStack width={width} height={height} className={className} />
     default:
       return <IconMenuPlatform width={width} height={height} className={className} />
   }

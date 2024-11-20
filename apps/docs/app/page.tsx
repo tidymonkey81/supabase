@@ -47,13 +47,6 @@ const products = [
       'Store, organize, transform, and serve large files—fully integrated with your Postgres database with Row Level Security access policies.',
   },
   {
-    title: 'AI & Vectors',
-    icon: 'ai',
-    hasLightIcon: true,
-    href: '/guides/ai',
-    description: 'Use Supabase to store and search embedding vectors.',
-  },
-  {
     title: 'Realtime',
     icon: 'realtime',
     hasLightIcon: true,
@@ -68,6 +61,27 @@ const products = [
     href: '/guides/functions',
     description:
       'Globally distributed, server-side functions to execute your code closest to your users for the lowest latency.',
+  },
+]
+
+const postgresIntegrations = [
+  {
+    title: 'AI & Vectors',
+    icon: 'ai',
+    href: '/guides/ai',
+    description: 'AI toolkit to manage embeddings',
+  },
+  {
+    title: 'Cron Jobs',
+    icon: 'cron',
+    href: '/guides/cron',
+    description: 'Schedule, manage, and monitor jobs',
+  },
+  {
+    title: 'Queues',
+    icon: 'queue',
+    href: '/guides/queue',
+    description: 'Postgres-native pull queues',
   },
 ]
 
@@ -154,6 +168,30 @@ const additionalResources = [
   },
 ]
 
+function PostgresIntegrationRow({
+  title,
+  description,
+  icon,
+  href,
+}: {
+  title: string
+  description?: string
+  icon: string
+  href: string
+}) {
+  return (
+    <Link className="not-prose py-6 flex items-baseline gap-6" href={href}>
+      <div className="rounded-full w-6 h-6 bg-surface-200 flex items-center justify-center">
+        <MenuIconPicker icon={icon} />
+      </div>
+      <div>
+        <h3 className="m-0 leading-snug text-lg text-foreground">{title}</h3>
+        {description && <p className="text-sm text-foreground-light">{description}</p>}
+      </div>
+    </Link>
+  )
+}
+
 const HomePage = () => (
   <HomeLayout>
     <div className="flex flex-col">
@@ -171,6 +209,19 @@ const HomePage = () => (
           )
         })}
       </ul>
+
+      <div className="flex flex-col lg:grid grid-cols-12 gap-6 py-12 border-b">
+        <div className="col-span-4">
+          <h2 id="postgres-integrations" className="scroll-mt-24 m-0">
+            Postgres Integrations
+          </h2>
+        </div>
+        <div className="col-span-8 flex flex-col divide-y">
+          {postgresIntegrations.map((integration) => (
+            <PostgresIntegrationRow key={integration.title} {...integration} />
+          ))}
+        </div>
+      </div>
 
       <div className="flex flex-col lg:grid grid-cols-12 gap-6 py-12 border-b">
         <div className="col-span-4 flex flex-col gap-1 [&_h2]:m-0 [&_h3]:m-0">

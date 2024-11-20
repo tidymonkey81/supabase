@@ -48,11 +48,26 @@ export const GLOBAL_MENU_ITEMS: GlobalMenuItems = [
             href: '/guides/realtime',
             level: 'realtime',
           },
+        ],
+        [
+          { label: 'Postgres Integrations' },
           {
             label: 'AI & Vectors',
             icon: 'ai',
             href: '/guides/ai',
             level: 'ai',
+          },
+          {
+            label: 'Cron Jobs',
+            icon: 'cron',
+            href: '/guides/cron',
+            level: 'cron',
+          },
+          {
+            label: 'Queues',
+            icon: 'queue',
+            href: '/guides/queues',
+            level: 'queue',
           },
         ],
       ],
