@@ -25,6 +25,8 @@ services:
     depends_on:
       analytics:
         condition: service_healthy
+    ports:
+    - ${STUDIO_PORT}:3003
     environment:
       STUDIO_PG_META_URL: http://meta:8080
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -411,6 +413,8 @@ services:
       - ./volumes/db/pooler.sql:/docker-entrypoint-initdb.d/migrations/99-pooler.sql:Z
       # Use named volume to persist pgsodium decryption key between restarts
       - db-config:/etc/postgresql-custom
+      # Adding tables
+      - ./volumes/db/init-tables.sql:/docker-entrypoint-initdb.d/init-scripts/98-init-tables.sql:Z
 
   vector:
     container_name: supabase-vector
@@ -418,7 +422,6 @@ services:
     healthcheck:
       test:
         [
-
           "CMD",
           "wget",
           "--no-verbose",
@@ -439,7 +442,7 @@ services:
   # Update the DATABASE_URL if you are using an external Postgres database
   supavisor:
     container_name: supabase-pooler
-    image: supabase/supavisor:1.1.56
+    image: supabase/supavisor:1.1.62
     healthcheck:
       test: curl -sSfL --head -o /dev/null "http://127.0.0.1:4000/api/health"
       interval: 10s
