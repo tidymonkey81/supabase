@@ -17,7 +17,7 @@ services:
           "CMD",
           "node",
           "-e",
-          "require('http').get('http://localhost:3000/api/profile', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
+          "require('http').get('http://localhost:3003/api/profile', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
         ]
       timeout: 5s
       interval: 5s
@@ -26,7 +26,7 @@ services:
       analytics:
         condition: service_healthy
     ports:
-    - ${STUDIO_PORT}:3003
+    - ${STUDIO_PORT}:3000
     environment:
       STUDIO_PG_META_URL: http://meta:8080
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -75,7 +75,7 @@ services:
       DASHBOARD_PASSWORD: ${DASHBOARD_PASSWORD}
     volumes:
       # https://github.com/supabase/supabase/issues/12661
-      - ~/git/cc/volumes/cc_supabase/api/kong.yml:/home/kong/temp.yml:ro
+      - C:\Users\tidym\git\volumes\cc_supabase\api\kong.yml:/home/kong/temp.yml:ro
 
   auth:
     container_name: supabase-auth
@@ -270,7 +270,7 @@ services:
       ENABLE_IMAGE_TRANSFORMATION: "true"
       IMGPROXY_URL: http://imgproxy:5001
     volumes:
-      - ~/git/cc/volumes/cc_supabase/storage:/var/lib/storage:z
+      - C:\Users\tidym\git\volumes\cc_supabase\storage:/var/lib/storage:z
 
   imgproxy:
     container_name: supabase-imgproxy
@@ -286,7 +286,7 @@ services:
       IMGPROXY_USE_ETAG: "true"
       IMGPROXY_ENABLE_WEBP_DETECTION: ${IMGPROXY_ENABLE_WEBP_DETECTION}
     volumes:
-      - ~/git/cc/volumes/cc_supabase/storage:/var/lib/storage:z
+      - C:\Users\tidym\git\volumes\cc_supabase\storage:/var/lib/storage:z
 
   meta:
     container_name: supabase-meta
@@ -322,7 +322,7 @@ services:
       # TODO: Allow configuring VERIFY_JWT per function. This PR might help: https://github.com/supabase/cli/pull/786
       VERIFY_JWT: "${FUNCTIONS_VERIFY_JWT}"
     volumes:
-      - ~/git/cc/volumes/cc_supabase/functions:/home/deno/functions:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\functions:/home/deno/functions:Z
     command:
       - start
       - --main-service
@@ -400,25 +400,25 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXP: ${JWT_EXPIRY}
     volumes:
-      - ~/git/cc/volumes/cc_supabase/db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
       # Must be superuser to create event trigger
-      - ~/git/cc/volumes/cc_supabase/db/webhooks.sql:/docker-entrypoint-initdb.d/init-scripts/98-webhooks.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\webhooks.sql:/docker-entrypoint-initdb.d/init-scripts/98-webhooks.sql:Z
       # Must be superuser to alter reserved role
-      - ~/git/cc/volumes/cc_supabase/db/roles.sql:/docker-entrypoint-initdb.d/init-scripts/99-roles.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\roles.sql:/docker-entrypoint-initdb.d/init-scripts/99-roles.sql:Z
       # Initialize the database settings with JWT_SECRET and JWT_EXP
-      - ~/git/cc/volumes/cc_supabase/db/jwt.sql:/docker-entrypoint-initdb.d/init-scripts/99-jwt.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\jwt.sql:/docker-entrypoint-initdb.d/init-scripts/99-jwt.sql:Z
       # PGDATA directory is persisted between restarts
-      - ~/git/cc/volumes/cc_supabase/db/data:/var/lib/postgresql/data:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\data:/var/lib/postgresql/data:Z
       # Changes required for internal supabase data such as _analytics
-      - ~/git/cc/volumes/cc_supabase/db/_supabase.sql:/docker-entrypoint-initdb.d/migrations/97-_supabase.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\_supabase.sql:/docker-entrypoint-initdb.d/migrations/97-_supabase.sql:Z
       # Changes required for Analytics support
-      - ~/git/cc/volumes/cc_supabase/db/logs.sql:/docker-entrypoint-initdb.d/migrations/99-logs.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\logs.sql:/docker-entrypoint-initdb.d/migrations/99-logs.sql:Z
       # Changes required for Pooler support
-      - ~/git/cc/volumes/cc_supabase/db/pooler.sql:/docker-entrypoint-initdb.d/migrations/99-pooler.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\pooler.sql:/docker-entrypoint-initdb.d/migrations/99-pooler.sql:Z
       # Use named volume to persist pgsodium decryption key between restarts
       - db-config:/etc/postgresql-custom
       # Adding tables
-      - ~/git/cc/volumes/cc_supabase/db/init-tables.sql:/docker-entrypoint-initdb.d/init-scripts/98-init-tables.sql:Z
+      - C:\Users\tidym\git\volumes\cc_supabase\db\init-tables.sql:/docker-entrypoint-initdb.d/init-scripts/98-init-tables.sql:Z
 
   vector:
     container_name: supabase-vector
@@ -437,7 +437,7 @@ services:
       interval: 5s
       retries: 3
     volumes:
-      - ~/git/cc/volumes/cc_supabase/logs/vector.yml:/etc/vector/vector.yml:ro
+      - C:\Users\tidym\git\volumes\cc_supabase\vector\vector.yml:/etc/vector/vector.yml:ro
       - ${DOCKER_SOCKET_LOCATION}:/var/run/docker.sock:ro
     environment:
       LOGFLARE_API_KEY: ${LOGFLARE_API_KEY}
@@ -483,7 +483,12 @@ services:
       - POOLER_MAX_CLIENT_CONN=${POOLER_MAX_CLIENT_CONN}
       - POOLER_POOL_MODE=transaction
     volumes:
-      - ~/git/cc/volumes/cc_supabase/pooler/pooler.exs:/etc/pooler/pooler.exs:ro
+      - C:\Users\tidym\git\volumes\cc_supabase\pooler\pooler.exs:/etc/pooler/pooler.exs:ro
 
 volumes:
   db-config:
+
+networks:
+  default:
+    name: cc-supabase-network
+    external: true
