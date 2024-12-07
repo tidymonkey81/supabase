@@ -419,6 +419,8 @@ services:
       - db-config:/etc/postgresql-custom
       # Adding tables
       - C:\Users\tidym\git\volumes\cc_supabase\db\init-tables.sql:/docker-entrypoint-initdb.d/init-scripts/98-init-tables.sql:Z
+      # Use named volume to persist pgsodium decryption key between restarts
+      - db-config:/etc/postgresql-custom
 
   vector:
     container_name: supabase-vector
